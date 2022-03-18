@@ -6,7 +6,7 @@ print('working')
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    return "Hello word"
+    return "Hello Kirthivasan, How are you?"
 
 if __name__ == "__main__":
     app.run()
