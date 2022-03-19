@@ -1,0 +1,109 @@
+2022-03-19 10:39:12,052  * Debugger is active!
+2022-03-19 10:39:12,054  * Debugger PIN: 133-142-801
+2022-03-19 10:39:12,149  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-03-19 10:39:48,440 127.0.0.1 - - [19/Mar/2022 10:39:48] "[32mGET / HTTP/1.1[0m" 302 -
+2022-03-19 10:39:48,485 127.0.0.1 - - [19/Mar/2022 10:39:48] "GET /login HTTP/1.1" 200 -
+2022-03-19 10:39:48,564 127.0.0.1 - - [19/Mar/2022 10:39:48] "[33mGET /css/style.css HTTP/1.1[0m" 404 -
+2022-03-19 10:39:49,152 127.0.0.1 - - [19/Mar/2022 10:39:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2022-03-19 10:40:04,512 BEGIN (implicit)
+2022-03-19 10:40:04,515 SELECT user.id AS user_id, user.name AS user_name, user.email AS user_email, user.password AS user_password, user.active AS user_active, user.confirmed_at AS user_confirmed_at 
+FROM user 
+WHERE lower(user.email) = lower(?)
+ LIMIT ? OFFSET ?
+2022-03-19 10:40:04,515 [generated in 0.00072s] ('admin@gmail.com', 1, 0)
+2022-03-19 10:40:04,576 SELECT role.id AS role_id, role.name AS role_name 
+FROM role, roles_users 
+WHERE ? = roles_users.user_id AND role.id = roles_users.role_id
+2022-03-19 10:40:04,576 [generated in 0.00070s] (1,)
+2022-03-19 10:40:04,579 COMMIT
+2022-03-19 10:40:04,581 127.0.0.1 - - [19/Mar/2022 10:40:04] "[32mPOST /login HTTP/1.1[0m" 302 -
+2022-03-19 10:40:04,587 BEGIN (implicit)
+2022-03-19 10:40:04,591 SELECT user.id AS user_id, user.name AS user_name, user.email AS user_email, user.password AS user_password, user.active AS user_active, user.confirmed_at AS user_confirmed_at 
+FROM user 
+WHERE user.id = ?
+ LIMIT ? OFFSET ?
+2022-03-19 10:40:04,592 [generated in 0.00065s] ('1', 1, 0)
+2022-03-19 10:40:04,594 SELECT role.id AS role_id, role.name AS role_name 
+FROM role, roles_users 
+WHERE ? = roles_users.user_id AND role.id = roles_users.role_id
+2022-03-19 10:40:04,595 [cached since 0.01963s ago] (1,)
+2022-03-19 10:40:04,597 ROLLBACK
+2022-03-19 10:40:04,598 127.0.0.1 - - [19/Mar/2022 10:40:04] "[32mGET /index HTTP/1.1[0m" 302 -
+2022-03-19 10:40:04,605 BEGIN (implicit)
+2022-03-19 10:40:04,607 SELECT user.id AS user_id, user.name AS user_name, user.email AS user_email, user.password AS user_password, user.active AS user_active, user.confirmed_at AS user_confirmed_at 
+FROM user 
+WHERE user.id = ?
+ LIMIT ? OFFSET ?
+2022-03-19 10:40:04,608 [cached since 0.01684s ago] ('1', 1, 0)
+2022-03-19 10:40:04,611 SELECT role.id AS role_id, role.name AS role_name 
+FROM role, roles_users 
+WHERE ? = roles_users.user_id AND role.id = roles_users.role_id
+2022-03-19 10:40:04,612 [cached since 0.03628s ago] (1,)
+2022-03-19 10:40:04,614 SELECT user.id AS user_id, user.name AS user_name, user.email AS user_email, user.password AS user_password, user.active AS user_active, user.confirmed_at AS user_confirmed_at 
+FROM user
+2022-03-19 10:40:04,614 [generated in 0.00039s] ()
+2022-03-19 10:40:04,635 ROLLBACK
+2022-03-19 10:40:04,638 127.0.0.1 - - [19/Mar/2022 10:40:04] "GET /employeelist HTTP/1.1" 200 -
+2022-03-19 10:40:04,659 BEGIN (implicit)
+2022-03-19 10:40:04,665 SELECT user.id AS user_id, user.name AS user_name, user.email AS user_email, user.password AS user_password, user.active AS user_active, user.confirmed_at AS user_confirmed_at 
+FROM user 
+WHERE user.id = ?
+ LIMIT ? OFFSET ?
+2022-03-19 10:40:04,666 BEGIN (implicit)
+2022-03-19 10:40:04,666 [cached since 0.07521s ago] ('1', 1, 0)
+2022-03-19 10:40:04,667 SELECT user.id AS user_id, user.name AS user_name, user.email AS user_email, user.password AS user_password, user.active AS user_active, user.confirmed_at AS user_confirmed_at 
+FROM user 
+WHERE user.id = ?
+ LIMIT ? OFFSET ?
+2022-03-19 10:40:04,670 SELECT role.id AS role_id, role.name AS role_name 
+FROM role, roles_users 
+WHERE ? = roles_users.user_id AND role.id = roles_users.role_id
+2022-03-19 10:40:04,670 [cached since 0.0793s ago] ('1', 1, 0)
+2022-03-19 10:40:04,671 [cached since 0.09525s ago] (1,)
+2022-03-19 10:40:04,672 SELECT role.id AS role_id, role.name AS role_name 
+FROM role, roles_users 
+WHERE ? = roles_users.user_id AND role.id = roles_users.role_id
+2022-03-19 10:40:04,674 [cached since 0.09854s ago] (1,)
+2022-03-19 10:40:04,675 ROLLBACK
+2022-03-19 10:40:04,685 127.0.0.1 - - [19/Mar/2022 10:40:04] "[33mGET /style.css HTTP/1.1[0m" 404 -
+2022-03-19 10:40:04,678 ROLLBACK
+2022-03-19 10:40:04,687 127.0.0.1 - - [19/Mar/2022 10:40:04] "GET /static/js/delete.js HTTP/1.1" 200 -
+2022-03-19 10:40:09,005 BEGIN (implicit)
+2022-03-19 10:40:09,006 SELECT user.id AS user_id, user.name AS user_name, user.email AS user_email, user.password AS user_password, user.active AS user_active, user.confirmed_at AS user_confirmed_at 
+FROM user 
+WHERE user.id = ?
+ LIMIT ? OFFSET ?
+2022-03-19 10:40:09,009 [cached since 4.418s ago] ('1', 1, 0)
+2022-03-19 10:40:09,016 SELECT role.id AS role_id, role.name AS role_name 
+FROM role, roles_users 
+WHERE ? = roles_users.user_id AND role.id = roles_users.role_id
+2022-03-19 10:40:09,016 [cached since 4.441s ago] (1,)
+2022-03-19 10:40:09,018 SELECT user.id AS user_id, user.name AS user_name, user.email AS user_email, user.password AS user_password, user.active AS user_active, user.confirmed_at AS user_confirmed_at 
+FROM user
+2022-03-19 10:40:09,022 [cached since 4.408s ago] ()
+2022-03-19 10:40:09,033 ROLLBACK
+2022-03-19 10:40:09,034 127.0.0.1 - - [19/Mar/2022 10:40:09] "GET /managerlist HTTP/1.1" 200 -
+2022-03-19 10:40:09,063 BEGIN (implicit)
+2022-03-19 10:40:09,067 SELECT user.id AS user_id, user.name AS user_name, user.email AS user_email, user.password AS user_password, user.active AS user_active, user.confirmed_at AS user_confirmed_at 
+FROM user 
+WHERE user.id = ?
+ LIMIT ? OFFSET ?
+2022-03-19 10:40:09,068 BEGIN (implicit)
+2022-03-19 10:40:09,068 [cached since 4.477s ago] ('1', 1, 0)
+2022-03-19 10:40:09,070 SELECT user.id AS user_id, user.name AS user_name, user.email AS user_email, user.password AS user_password, user.active AS user_active, user.confirmed_at AS user_confirmed_at 
+FROM user 
+WHERE user.id = ?
+ LIMIT ? OFFSET ?
+2022-03-19 10:40:09,072 [cached since 4.48s ago] ('1', 1, 0)
+2022-03-19 10:40:09,074 SELECT role.id AS role_id, role.name AS role_name 
+FROM role, roles_users 
+WHERE ? = roles_users.user_id AND role.id = roles_users.role_id
+2022-03-19 10:40:09,074 [cached since 4.499s ago] (1,)
+2022-03-19 10:40:09,077 SELECT role.id AS role_id, role.name AS role_name 
+FROM role, roles_users 
+WHERE ? = roles_users.user_id AND role.id = roles_users.role_id
+2022-03-19 10:40:09,078 [cached since 4.502s ago] (1,)
+2022-03-19 10:40:09,079 ROLLBACK
+2022-03-19 10:40:09,084 127.0.0.1 - - [19/Mar/2022 10:40:09] "[33mGET /style.css HTTP/1.1[0m" 404 -
+2022-03-19 10:40:09,083 ROLLBACK
+2022-03-19 10:40:09,086 127.0.0.1 - - [19/Mar/2022 10:40:09] "[36mGET /static/js/delete.js HTTP/1.1[0m" 304 -

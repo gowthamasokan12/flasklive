@@ -1,0 +1,376 @@
+{% extends 'base.html' %}
+{% block head %}
+<style>
+    body {
+        background: #f5f5f5;
+    }
+
+    .indent-small {
+        margin-left: 5px;
+    }
+
+    .form-group.internal {
+        margin-bottom: 0;
+    }
+
+    .dialog-panel {
+        margin: 70px;
+    }
+
+    .panel-body {
+        background: #EEEEEE;
+    }
+
+    .panel-heading {
+        padding: 15px 15px 15px 32px;
+        border-bottom: 1px solid transparent;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+
+    label.control-label {
+        font-weight: 600;
+        color: #777;
+        font-family: 'Varela Round', sans-serif;
+    }
+
+    .form-horizontal .control-label {
+        text-align: inherit;
+    }
+
+    .form-control {
+        font-family: 'Varela Round', sans-serif;
+        width: 400px;
+        /* width: auto; */
+    }
+
+    h3 {
+        font-family: 'Varela Round', sans-serif;
+    }
+
+    .submit {
+        /* background-color: #428bca; */
+        color: white;
+        padding: 10px 10px 10px 10px;
+        margin: 1px;
+        margin-left: 5px;
+        border: none;
+        border-radius: 27px;
+        cursor: pointer;
+        width: 95px;
+        opacity: 0.9;
+    }
+
+    .question {
+        margin-left: 180px;
+    }
+
+    .panel-heading {
+        background-color: #513c93e0 !important;
+        color: white;
+    }
+    .form-control .row{
+        padding: 10px 35px;
+    }
+    
+
+</style>
+{% endblock %}
+{% block content %}
+<div class='container'>
+    <div class='panel panel-primary dialog-panel'>
+        <div class='panel-heading'>
+            <h3>Add Employee</h3>
+        </div>
+        <div class='panel-body'>
+            {% if action == 'create' %}
+            <form action="/addemployee" id="createemp" method="POST">
+                <br>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Name</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='name' id='name' placeholder='Enter your Name'
+                                    type='text' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Email</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='email' id='email' placeholder='Enter your Email'
+                                    type='email' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Password</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-12 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='password' id='password' type="password" placeholder="Enter New Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!*#}$%{&^@_]).{8,}"
+                                title="Entered Password should contain atleast one number,one uppercase,one lowercase,one special character and minimum 8 characters" onkeyup="validatePassword(this.value);"required> <span id="msg" style="width: 400px;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Confirm Password</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-12 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='confirm' id='cpw' placeholder='Enter your Password Again'
+                                    type='password' required> <span id="msg1" style="width: 400px;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Role</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='role' id='role' value="Employee" readonly
+                                    type='text' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Phone</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='phone' id='cpw' placeholder='Enter your Mobile number'
+                                    type='number' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Designation</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='designation' id='designation' placeholder='Enter your Designation'
+                                    type='text' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Active</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input type="checkbox" class="checkboxclass" name="mycheckbox" value="active" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <div class='form-group text-center'>
+                    <div class=' col-md-12'>
+                        <button type='button' id='button' class="submit btn-primary">Submit</button>
+                        <a href="/employeelist"><button type='button' id='cancel' class="submit btn-danger">Cancel</button></a>
+                    </div>
+                </div>
+                <br>
+            </form>
+            <script>
+
+
+            function validatePassword(password) {
+                // Do not show anything when the length of password is zero.
+                if (password.length === 0) {
+                    document.getElementById("msg").innerHTML = "";
+                    return;
+                }
+                if (password.length < 8) {
+                    document.getElementById("msg").innerHTML = "Your Password should atleast have 8 characters";
+                    document.getElementById("msg").style.color = "red";
+                    return;
+                }
+                // Create an array and push all possible values that you want in password
+                var matchedCase = new Array();
+                matchedCase.push("[!*#+=}$%{&^@_-]"); // Special Charector
+                matchedCase.push("[A-Z]");      // Uppercase Alpabates
+                matchedCase.push("[0-9]");      // Numbers
+                matchedCase.push("[a-z]");     // Lowercase Alphabates
+                // Check the conditions
+                var ctr = 0;
+                for (var i = 0; i < matchedCase.length; i++) {
+                    if (new RegExp(matchedCase[i]).test(password)) {
+                        ctr++;
+                    }
+                }
+                // Display it
+                var color = "";
+                var strength = "";
+                switch (ctr) {
+                    case 0:
+                    case 1:
+                    case 2:
+                        strength = "Very Weak";
+                        color = "red";
+                        break;
+                    case 3:
+                        strength = "Medium";
+                        color = "orange";
+                        break;
+                    case 4:
+                        strength = "Strong";
+                        color = "green";
+                        break;
+                }
+                document.getElementById("msg").innerHTML = strength;
+                document.getElementById("msg").style.color = color;
+            }
+            $('#password, #cpw').on('keyup', function () {
+                console.log($('#password').val(),$('#cpw').val())
+            if ($('#password').val() == $('#cpw').val()) {
+                $('#msg1').html('Matching').css('color', 'green');
+            } else 
+                $('#msg1').html('Not Matching').css('color', 'red');
+            });
+            $('#cancel').click(function () {
+                $('#form')[0].reset();
+                $('#msg1').html('');
+                $('#msg').html('');
+            })
+
+            $('#button').on('click', function () {
+                if ($('#password').val() == $('#cpw').val()) {
+                    $('#createemp').submit()
+                }
+                else{
+                    $(".alert").val("password not matching")
+                }
+            });
+
+            </script>
+            {% elif action == 'edit' %}
+            <form action="/editemployee/{{user.id}}" method="POST">
+                <br>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Name</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='name' id='name' placeholder='Enter your Name' value="{{user.name}}"
+                                    type='text' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Email</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='email' id='email' placeholder='Enter your Email' value="{{user.email}}"
+                                    type='email' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Role</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='role' id='role' value="Employee" readonly
+                                    type='text' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Phone</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='phone' id='cpw' placeholder='Enter your Mobile number' value="{{user.employee.phone}}"
+                                    type='number' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Designation</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='designation' id='designation' placeholder='Enter your Designation' value="{{user.employee.designation}}"
+                                    type='text' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Active</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input type="checkbox" class="checkboxclass" name="active" id="active" value="active" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <div class='form-group text-center'>
+                    <div class=' col-md-12'>
+                        <button type='submit' id='submit' class="submit btn-primary">Submit</button>
+                        <a href="/employeelist"><button type='button' id='cancel' class="submit btn-danger">Cancel</button></a>
+                    </div>
+                </div>
+                <br>
+            </form>
+            <script>
+                active_status = "{{user.active}}"
+                console.log(active_status)
+                if (active_status == "True"){
+                    $('#active').prop('checked',true)
+                }
+            </script>
+            {% endif %}
+        </div>
+        <br> <br>
+    </div>
+</div>
+{% endblock %}

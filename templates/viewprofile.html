@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>User Profile</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{
+  overflow: scroll;
+}
+hr{
+  color: white;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="col-lg-8 mx-auto">
+    <div class="card mb-3">
+      <div class="card-body">
+        <!-- <div class="d-flex flex-column align-items-center text-center"> -->
+          <div class="row">
+            <div class="col-sm-6 text-center mt-5">
+          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle mt-5" width="170">
+          <div class="mt-3 text-white">
+            <h4></h4>
+          </div>
+        </div>
+          <div class="col-sm-6">
+            <canvas id="myChart"></canvas>
+          </div>
+          
+        </div>
+        <!-- </div> -->
+        <br>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0 text-Dark">Name</h6>
+          </div>
+          <div class="col-sm-9 text-Dark">
+           {{user.name}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0 text-Dark">Email</h6>
+          </div>
+          <div class="col-sm-9 text-Dark">
+           {{user.email}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0 text-Dark">Active</h6>
+          </div>
+          <div class="col-sm-9 text-Dark">
+            {% if user.active == True %}
+            <i class="fas fa-check-circle text-success" style="font-size: 20px;"></i>
+            {% else %}
+            <i class="fas fa-times-circle text-danger" style="font-size: 20px;"></i>
+            {% endif %}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0 text-Dark">Phone</h6>
+          </div>
+          <div class="col-sm-9 text-Dark">
+            {{user.employee.phone}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0 text-Dark">Designation</h6>
+          </div>
+          <div class="col-sm-9 text-Dark">
+            {{user.employee.designation}}
+          </div>
+        </div>
+        <hr>
+        <a href="/employeelist"><button type="button" class="btn btn-danger text-white float-right" data-toggle="tooltip">Close</button></a>
+        <a href="/editemployee/{{user.id}}"><button type="button" class="btn btn-primary text-white float-right" data-toggle="tooltip">Update</button></a>
+        
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="col-lg-8 mx-auto">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12 text-Dark text-center">
+            <h4>Skills</h4>
+          </div>
+          
+        </div>
+        <br><br>
+        {% for skill in user.employee.skills %}
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0 text-Dark">{{skill.name}}</h6>
+            <div class="progress mt-3" style="height: 0.5rem;">
+              <div class="progress-bar" role="progressbar" style="width: {{skill.percentage}}%; background-color: #00acc1!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+          <div class="offset-sm-2 col-sm-2 text-Dark mt-2">
+            {{skill.percentage}}%
+          </div>
+          
+        </div>
+        <br>
+        {% endfor %}
+        
+        
+      </div>
+    </div>
+  </div>
+  <br><br>
+</div>
+
+<script>
+
+pie_label={{sk_name|safe}};
+pie_data={{sk_perc|safe}};
+
+function generateRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+  bgc=[];
+  for(i=0;bgc.length<pie_label.length;i++){
+    clr = generateRandomColor()
+    if (clr in bgc == false){
+      bgc.push(clr)
+    }}
+
+  const data = {
+  labels:pie_label,
+  datasets: [{
+    label: 'My First Dataset',
+    data: pie_data,
+    backgroundColor: bgc,
+    hoverOffset: 4
+  }]
+};
+
+
+  const config = {
+  type: 'pie',
+  data: data,
+};
+
+const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+
+</script>
+
+{% endblock %}

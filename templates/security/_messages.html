@@ -1,0 +1,24 @@
+<style>
+    .alertmsg p {
+        font-size: 26px;
+        font-family: 'Varela Round', sans-serif;
+        margin-left: 150px;
+        margin-top: 32px;
+    }
+</style>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-primary" role="alert">
+    {{message}}
+  </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<script>
+    setTimeout(function () {
+    $('.alert').fadeOut('fast');
+    }, 6000);
+</script>
+

@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% block head %}
+<style>
+    body {
+        background: #f5f5f5;
+    }
+
+    .indent-small {
+        margin-left: 5px;
+    }
+
+    .form-group.internal {
+        margin-bottom: 0;
+    }
+
+    .dialog-panel {
+        margin: 70px;
+    }
+
+    .panel-body {
+        background: #EEEEEE;
+    }
+
+    .panel-heading {
+        padding: 15px 15px 15px 32px;
+        border-bottom: 1px solid transparent;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+
+    label.control-label {
+        font-weight: 600;
+        color: #777;
+        font-family: 'Varela Round', sans-serif;
+    }
+
+    .form-horizontal .control-label {
+        text-align: inherit;
+    }
+
+    .form-control {
+        font-family: 'Varela Round', sans-serif;
+        width: 400px;
+    }
+
+    h3 {
+        font-family: 'Varela Round', sans-serif;
+    }
+
+    .submit {
+        /* background-color: #428bca; */
+        color: white;
+        padding: 10px 10px 10px 10px;
+        margin: 1px;
+        margin-left: 5px;
+        border: none;
+        border-radius: 27px;
+        cursor: pointer;
+        width: 95px;
+        opacity: 0.9;
+    }
+
+    .question {
+        margin-left: 180px;
+    }
+
+    .panel-heading {
+        background-color: #513c93e0 !important;
+        color: white;
+    }
+    .form-control .row{
+        padding: 10px 35px;
+    }
+    
+
+</style>
+{% endblock %}
+{% block content %}
+<div class='container'>
+    <div class='panel panel-primary dialog-panel'>
+        <div class='panel-heading'>
+            <h3>Add Manager</h3>
+        </div>
+        <div class='panel-body'>
+            <form action="/addmanager" method="POST" >
+                <br>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Name</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='name' id='name' placeholder='Enter your Name'
+                                    type='text' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Email</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='email' id='email' placeholder='Enter your Email'
+                                    type='email' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Password</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='password' id='password' placeholder='Enter your password'
+                                    type='password' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Confirm Password</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='confirm' id='cpw' placeholder='Enter your Password Again'
+                                    type='password' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Role</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input class='form-control' name='role' id='role' value="Manager" readonly
+                                    type='text' required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <div class='form-group'>
+                    <div class="row" style="padding: 10px 35px;">
+                    <label class='control-label col-md-3 col-md-offset-1' for='id_title'>Active</label>
+                    <div class='col-md-8'>
+                        <div class='col-md-4 indent-small'>
+                            <div class='form-group internal'>
+                                <input type="checkbox" class="checkboxclass" name="mycheckbox" value="active" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <div class='form-group text-center'>
+                    <div class=' col-md-12'>
+                        <button type='submit' id='submit' class="submit btn-primary">Submit</button>
+                        <a href="/employeelist"><button type='button' id='cancel' class="submit btn-danger">Cancel</button></a>
+                    </div>
+                </div>
+                <br>
+            </form>
+        </div>
+        <br> <br>
+    </div>
+</div>
+{% endblock %}
