@@ -306,9 +306,10 @@ def deleteskill():
 def profile():
     sk_name = []
     sk_perc = []
-    for i in current_user.employee.skills:
-        sk_name.append(i.name)
-        sk_perc.append(i.percentage)
+    if 'Employe' in current_user.roles:
+        for i in current_user.employee.skills:
+            sk_name.append(i.name)
+            sk_perc.append(i.percentage)
     return render_template('profile.html',sk_name=sk_name,sk_perc=sk_perc)
 
 @app.route('/employee', methods=['GET','POST'])
