@@ -107,15 +107,15 @@ def addmanager():
             )
             db.session.add(new_user)
             db.session.commit()
-            flash('Employee created successfully')
-            return redirect(url_for('employeelist'))
+            flash('Manager created successfully')
+            return redirect(url_for('managerlist'))
         except Exception as ae:
             if(str(ae.__dict__['orig']).find("Duplicate entry")!= -1):
                 flash("User with this email is already Exist!")
             else:
                 flash("Failed to creata a user try again!!")
             print(ae,'####')
-            logger.exception('Error in add employee',ae)
+            logger.exception('Error in adding manager',ae)
     return render_template('addmanager.html')
 
 @app.route('/addemployee', methods=['GET','POST'])
