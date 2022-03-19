@@ -173,33 +173,36 @@ def editemployee(id):
         try:
             usr_role = Role.query.get(2)
             print(usr_role,'**************')
-            user.name = request.form['name'],
-            user.email = request.form['email']
-            if 'active' in request.form:
-                user.active = True
-            else:
-                user.active = False
-            try:
-                db.session.commit()
-            except Exception as ae:
-                if(str(ae.__dict__['orig']).find("Duplicate entry")!= -1):
-                    flash("Employee with the entered email is already Exist!")
+            if request.form['name'] != user.name or request.form['email'] != user.email:
+                user.name = request.form['name'],
+                user.email = request.form['email']
+                if 'active' in request.form:
+                    user.active = True
                 else:
-                    flash("Failed to creata a employee try again!!")
-                print(ae,'####')
-                logger.exception('Error in edit employee',ae)
-                return redirect(url_for('editemployee', id=id))
+                    user.active = False
+                try:
+                    db.session.commit()
+                except Exception as ae:
+                    if(str(ae.__dict__['orig']).find("Duplicate entry")!= -1):
+                        flash("Employee with the entered email is already Exist!")
+                    else:
+                        flash("Failed to edit employee details try again!!")
+                    print(ae,'####')
+                    logger.exception('Error in edit employee',ae)
+                    return redirect(url_for('editemployee', id=id))
+            
             emp  = Employee.query.get(user.employee.id)
-            emp.phone=request.form['phone']
-            emp.designation=request.form['designation']
-            db.session.commit()
-            flash('Employee updated successfully')
-            return redirect(url_for('employeelist',))
+            if request.form['phone'] != emp.phone or request.form['designation'] != emp.designation:
+                emp.phone=request.form['phone']
+                emp.designation=request.form['designation']
+                db.session.commit()
+                flash('Employee updated successfully')
+                return redirect(url_for('employeelist',))
         except Exception as ae:
             if(str(ae.__dict__['orig']).find("Duplicate entry")!= -1):
                 flash("Employee with the entered phone number is already Exist!")
             else:
-                flash("Failed to update a employee try again!!")
+                flash("Failed to update employee details try again!!")
             print(ae,'####')
             logger.exception('Error in edit employee',ae)
             return redirect(url_for('editemployee', id=id))
